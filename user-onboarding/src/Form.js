@@ -23,6 +23,7 @@ function Form(props) {
                 type="text"
                 id="fName"
                 name="fName"
+                value={formInput.fName}
             />
             <br />
             <label htmlFor="lName">Last Name: </label>
@@ -30,6 +31,7 @@ function Form(props) {
                 type="text"
                 id="lName"
                 name="lName"
+                value={formInput.lName}
             />
             <br />
             <label htmlFor="email">Email Address: </label>
@@ -37,6 +39,7 @@ function Form(props) {
                 type="email"
                 id="email"
                 name="email"
+                value={formInput.email}
             />
             <br />
             <label htmlFor="password">Password: </label>
@@ -44,6 +47,7 @@ function Form(props) {
                 type="password"
                 id="password"
                 name="password"
+                value={formInput.password}
             />
             <br />
             <label htmlFor="agree">Do you agree to the terms and servies? </label>
@@ -51,6 +55,7 @@ function Form(props) {
                 type="checkbox"
                 id="agree"
                 name="agree"
+                checked={formInput.agree}
             />
             <br />
             <button type="submit">Submit</button>
