@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const initMember = {
     fName: '',
@@ -12,6 +12,16 @@ function Form(props) {
 
     const [formInput, setFormInput] = useState(initMember);
 
+    const handleChange = (event) => {
+        const value = event.target.name === "agree" ? event.target.checked : event.target.value;
+        
+        setFormInput({...formInput, [event.target.name]: value})
+    }
+
+    useEffect(() => {
+        console.log(formInput)
+    }, [formInput.fName, formInput.lName, formInput.email, formInput.password, formInput.agree])
+
     return (
     <>
         <h1>Join the Community</h1>
@@ -23,6 +33,7 @@ function Form(props) {
                 type="text"
                 id="fName"
                 name="fName"
+                onChange={handleChange}
                 value={formInput.fName}
             />
             <br />
@@ -31,6 +42,7 @@ function Form(props) {
                 type="text"
                 id="lName"
                 name="lName"
+                onChange={handleChange}
                 value={formInput.lName}
             />
             <br />
@@ -39,6 +51,7 @@ function Form(props) {
                 type="email"
                 id="email"
                 name="email"
+                onChange={handleChange}
                 value={formInput.email}
             />
             <br />
@@ -47,6 +60,7 @@ function Form(props) {
                 type="password"
                 id="password"
                 name="password"
+                onChange={handleChange}
                 value={formInput.password}
             />
             <br />
@@ -55,6 +69,7 @@ function Form(props) {
                 type="checkbox"
                 id="agree"
                 name="agree"
+                onChange={handleChange}
                 checked={formInput.agree}
             />
             <br />
