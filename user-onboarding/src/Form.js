@@ -54,6 +54,7 @@ function Form(props) {
         <p>Fill out the form below: </p>
 
         <form>
+            {errors.fName !== formInput.fName && <p style={errStyle}>{errors.fName}</p>}
             <label htmlFor="fName">First Name: </label>
             <input 
                 type="text"
@@ -63,6 +64,7 @@ function Form(props) {
                 value={formInput.fName}
             />
             <br />
+            {errors.lName !== formInput.lName && <p style={errStyle}>{errors.lName}</p>}
             <label htmlFor="lName">Last Name: </label>
             <input 
                 type="text"
@@ -72,6 +74,7 @@ function Form(props) {
                 value={formInput.lName}
             />
             <br />
+            {errors.email !== formInput.email && <p style={errStyle}>{errors.email}</p>}
             <label htmlFor="email">Email Address: </label>
             <input 
                 type="email"
@@ -81,6 +84,7 @@ function Form(props) {
                 value={formInput.email}
             />
             <br />
+            {errors.password !== formInput.password && <p style={errStyle}>{errors.password}</p>}
             <label htmlFor="password">Password: </label>
             <input 
                 type="password"
@@ -90,6 +94,7 @@ function Form(props) {
                 value={formInput.password}
             />
             <br />
+            {errors.agree !== formInput.agree && <p style={errStyle}>{errors.agree}</p>}
             <label htmlFor="agree">Do you agree to the terms and servies? </label>
             <input 
                 type="checkbox"
