@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import * as yup from "yup";
+import axios from "axios";
 
 const initMember = {
     fName: '',
@@ -42,6 +43,18 @@ function Form(props) {
         setFormInput({...formInput, [name]: value})
     }
 
+    const submit = (event) => {
+        event.preventDefault();
+        axios.post("https://reqres.in/api/users", formInput)
+            .then(res => {
+                console.log(res.data);
+                setFormInput(initMember);
+            })
+            .catch(err => {
+                console.log(`There was an error: ${err}`)
+            })
+    }
+
     useEffect(() => {
         schema.isValid(formInput)
             .then(valid => setDisabledButton(!valid))
@@ -53,7 +66,7 @@ function Form(props) {
         <h1>Join the Community</h1>
         <p>Fill out the form below: </p>
 
-        <form>
+        <form onSubmit={submit}>
             {errors.fName !== formInput.fName && <p style={errStyle}>{errors.fName}</p>}
             <label htmlFor="fName">First Name: </label>
             <input 
