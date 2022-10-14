@@ -18,20 +18,35 @@ const schema = yup.object().shape({
 
 })
 
+const errStyle = {
+    color: "red",
+    fontWeight: 600
+}
+
 function Form(props) {
 
     const [formInput, setFormInput] = useState(initMember);
+    const [errors, setErrors] = useState(initMember);
     const [disabledButton, setDisabledButton] = useState(true);
 
+    const setFormErorrs = (name, value) => {
+        yup.reach(schema, name).validate(value)
+            .then(() => setErrors({...errors, [name]: value}))
+            .catch((error) => setErrors({...errors, [name]: error.errors[0]}))
+    }
+
     const handleChange = (event) => {
-        const value = event.target.name === "agree" ? event.target.checked : event.target.value;
-        
-        setFormInput({...formInput, [event.target.name]: value})
+        const name = event.target.name;
+        const value = name === "agree" ? event.target.checked : event.target.value;
+        setFormErorrs(name, value)
+        setFormInput({...formInput, [name]: value})
     }
 
     useEffect(() => {
+        schema.isValid(formInput)
+            .then(valid => setDisabledButton(!valid))
         console.log(formInput)
-    }, [formInput.fName, formInput.lName, formInput.email, formInput.password, formInput.agree])
+    }, [formInput])
 
     return (
     <>
