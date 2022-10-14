@@ -1,7 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 
+const initMember = {
+    fName: '',
+    lName: '',
+    email: '',
+    password: '',
+    agree: false
+}
 
 function Form(props) {
+
+    const [formInput, setFormInput] = useState(initMember);
 
     return (
     <>
