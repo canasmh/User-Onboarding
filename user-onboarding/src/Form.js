@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import * as yup from "yup";
 
 const initMember = {
     fName: '',
@@ -7,6 +8,15 @@ const initMember = {
     password: '',
     agree: false
 }
+
+const schema = yup.object().shape({
+    fName: yup.string().required("Enter your First Name").min(3, "Name must be at least 3 characters long"),
+    lName: yup.string().required("Enter your Last Name").min(3, "Name must be at least 3 characters long"),
+    email: yup.string().email("Please Enter a valid Email").required("Please enter a valid Email"),
+    password: yup.string().required("Please enter a password").min(7, "Password must be at least 7 characters long"),
+    agree: yup.boolean().oneOf([true], "You must agree to Terms and Conditions")
+
+})
 
 function Form(props) {
 
