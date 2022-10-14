@@ -21,6 +21,7 @@ const schema = yup.object().shape({
 function Form(props) {
 
     const [formInput, setFormInput] = useState(initMember);
+    const [disabledButton, setDisabledButton] = useState(true);
 
     const handleChange = (event) => {
         const value = event.target.name === "agree" ? event.target.checked : event.target.value;
@@ -83,7 +84,7 @@ function Form(props) {
                 checked={formInput.agree}
             />
             <br />
-            <button type="submit">Submit</button>
+            <button type="submit" disabled={disabledButton}>Submit</button>
         </form>
     </>
     );
