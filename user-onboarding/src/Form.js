@@ -49,6 +49,7 @@ function Form(props) {
             .then(res => {
                 console.log(res.data);
                 setFormInput(initMember);
+                setErrors(initMember);
             })
             .catch(err => {
                 console.log(`There was an error: ${err}`)
