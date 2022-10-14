@@ -2,7 +2,7 @@ import React from "react";
 
 
 function UserCard(props) {
-    const { fName, lName, email, password, agree} = props;
+    const { fName, lName, email, password, agree} = props.user;
     return (
         <div>
             <h3>{fName} {lName}</h3>
@@ -12,3 +12,5 @@ function UserCard(props) {
         </div>
     )
 }
+
+export default UserCard;

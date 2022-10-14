@@ -26,6 +26,8 @@ const errStyle = {
 
 function Form(props) {
 
+    const { currentUsers, addUser} = props;
+
     const [formInput, setFormInput] = useState(initMember);
     const [errors, setErrors] = useState(initMember);
     const [disabledButton, setDisabledButton] = useState(true);
@@ -47,7 +49,7 @@ function Form(props) {
         event.preventDefault();
         axios.post("https://reqres.in/api/users", formInput)
             .then(res => {
-                console.log(res.data);
+                addUser([...currentUsers, res.data]);
                 setFormInput(initMember);
                 setErrors(initMember);
             })
